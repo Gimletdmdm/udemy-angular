@@ -1,16 +1,29 @@
 import { Routes } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductComponent } from './product/product.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: ProductListComponent,
-        title: 'product-list'
+        redirectTo: 'products',
+        pathMatch: 'full'
     },
     {
-        path: 'detail',
-        component: ProductDetailComponent,
-        title: 'detail'
-    }
+        path: 'products',
+        component: ProductComponent,
+        title: 'products',
+        children: [
+            {
+                path: '',
+                component: ProductListComponent,
+                title: 'product-list'
+            },
+            {
+                path: 'detail',
+                component: ProductDetailComponent,
+                title: 'detail'
+            }
+        ]
+    },
 ];

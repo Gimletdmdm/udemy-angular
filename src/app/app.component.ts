@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './common/navbar/navbar.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { ProductComponent } from './product/product.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { ProductListComponent } from './product-list/product-list.component';
     CommonModule, 
     RouterOutlet,
     NavbarComponent,
-    ProductListComponent
+    ProductComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
