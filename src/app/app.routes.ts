@@ -20,7 +20,7 @@ export const routes: Routes = [
                 title: 'product-list'
             },
             {
-                path: 'detail',
+                path: 'detail/:productId',
                 component: ProductDetailComponent,
                 title: 'detail'
             }

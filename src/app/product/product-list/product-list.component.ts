@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { products } from 'src/app/products';
+import { Product } from 'src/app/products';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +17,11 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
 
-  products: any = [1, 2, 3, 4];
+  products!: Product[];
+  
+  ngOnInit(): void {
+    this.products = products;
+  }
 }
