@@ -9,6 +9,7 @@ export interface Product {
     headingText1: string;
     headingText2: string;
     headingText3: string;
+    coverImage: string;
   }
 
 export const products = [
@@ -23,6 +24,7 @@ export const products = [
         headingText1: 'サンプルテキスト',
         headingText2: 'サンプルテキスト',
         headingText3: 'サンプルテキスト',
+        coverImage: './assets/img/phone-cover.jpg'
     },
     {
         id: 1,
@@ -35,29 +37,32 @@ export const products = [
         headingText1: 'サンプルテキスト',
         headingText2: 'サンプルテキスト',
         headingText3: 'サンプルテキスト',
+        coverImage: './assets/img/phone-cover.jpg'
     },
     {
         id: 2,
         name: 'Phone standard',
         price: 299,
-        description: '',
+        description: 'A standard phone.',
         heading1: 'sample text',
         heading2: 'sample text',
         heading3: 'sample text',
         headingText1: 'サンプルテキスト',
         headingText2: 'サンプルテキスト',
         headingText3: 'サンプルテキスト',
+        coverImage: './assets/img/phone-cover.jpg'
     },
     {
         id: 3,
         name: 'Phone special',
         price: 999,
-        description: '',
+        description: 'A special phone with one of the best cameras',
         heading1: 'sample text',
         heading2: 'sample text',
         heading3: 'sample text',
         headingText1: 'サンプルテキスト',
         headingText2: 'サンプルテキスト',
         headingText3: 'サンプルテキスト',
+        coverImage: './assets/img/phone-cover.jpg'
     },
 ];
