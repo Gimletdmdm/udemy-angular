@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './common/navbar/navbar.component';
+import { ProductComponent } from './product/product.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ import { NavbarComponent } from './common/navbar/navbar.component';
   imports: [
     CommonModule, 
     RouterOutlet,
-    NavbarComponent
+    NavbarComponent,
+    ProductComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
