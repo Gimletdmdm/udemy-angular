@@ -3,23 +3,23 @@ const mongoose = require('mongoose');
 const config = require('./config/dev');
 const FakeDb = require('./fake-db');
 
+const productRouter = require('./routes/products');
+
 mongoose.connect(config.DB_URL, {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
 }).then(
     () => {
         const fakeDb = new FakeDb();
-        fakeDb.seeDb(); 
+        fakeDb.initDb();
     }
 )
 
 const app = express()
 
-app.get('/products', (req, res) => {
-    res.json({'success': true});
-})
+app.use('/api/v1/products', productRouter);
 
-const PORT = process.env.PORT || '3001'
+const PORT = process.env.PORT || '3001';
 
 app.listen(PORT, function() {
     console.log('I am running!');
