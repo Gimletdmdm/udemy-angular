@@ -1,8 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { products } from 'src/app/products';
 import { Product } from 'src/app/products';
+import { ProductService } from '../shared/product.service';
+import { Subject, takeUntil } from 'rxjs';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -13,15 +15,28 @@ import { Product } from 'src/app/products';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
 
   product: Product | undefined; 
+  destroy$: Subject<void> = new Subject<void>();
 
+  productService = inject(ProductService);
   activatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
+    this.getProductById();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  getProductById() {
     const routeParams = this.activatedRoute.snapshot.paramMap;
-    const productIdFromRoute = Number(routeParams.get('productId'));
-    this.product = products.find(product => product.id === productIdFromRoute);
+    const id = routeParams.get('productId')!;
+    this.productService.getProductById(id).pipe(
+      takeUntil(this.destroy$))
+      .subscribe((product) => this.product = product);
   }
 }
