@@ -28,7 +28,7 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'index.html',
+        redirectTo: '/index.html',
         pathMatch: 'full'
     }
 ];
