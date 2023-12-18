@@ -13,6 +13,7 @@ mongoose.connect(config.DB_URI, {
     () => {
         if(process.env.NODE_ENV !== 'production') {
             const fakeDb = new FakeDb();
+            console.log('not production');
             // fakeDb.initDb();
         } 
     }
@@ -23,6 +24,7 @@ const app = express()
 app.use('/api/v1/products', productRouter);
 
 if(process.env.NODE_ENV === 'production') {
+    console.log('production');
     const appPath = path.join(__dirname, '..', 'dist', 'udemy-angular');
     app.use(express.static(appPath));
     app.get("*", (req, res) => {
