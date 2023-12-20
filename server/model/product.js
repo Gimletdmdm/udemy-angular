@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-    id: Number,
+    
     name: {type: String, required: true, max: [60, '最大60文字までです'] },
     price: Number,
     description: String,

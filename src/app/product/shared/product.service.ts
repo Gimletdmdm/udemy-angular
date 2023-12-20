@@ -13,11 +13,11 @@ export class ProductService {
   http = inject(HttpClient);
 
   getProduct(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl, { responseType: 'json' });
+    return this.http.get<Product[]>(this.productsUrl);
   }
 
   getProductById(id: string): Observable<Product> {
     const productByIdUrl = `${this.productsUrl}` + id;
-    return this.http.get<Product>(productByIdUrl, { responseType: 'json' });
+    return this.http.get<Product>(productByIdUrl);
   }
 }

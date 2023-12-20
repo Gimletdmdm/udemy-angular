@@ -7,8 +7,7 @@ const productRouter = require('./routes/products');
 const path = require('path');
 
 mongoose.connect(config.MONGODB_URI, {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true,
+    
 }).then(
     () => {
         if(process.env.NODE_ENV !== 'production') {
@@ -16,7 +15,7 @@ mongoose.connect(config.MONGODB_URI, {
             // fakeDb.initDb();
         } 
     }
-).catch(err => handleError(err));
+).catch(err => console.log(err));
 
 const app = express()
 
