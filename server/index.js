@@ -7,17 +7,20 @@ const productRouter = require('./routes/products');
 const path = require('path');
 
 mongoose.connect(config.MONGODB_URI, {
-    
+
 }).then(
     () => {
         if(process.env.NODE_ENV !== 'production') {
             const fakeDb = new FakeDb();
             // fakeDb.initDb();
         } 
+        console.log(config.MONGODB_URI);
     }
 ).catch(err => console.log(err));
 
 const app = express()
+
+app.use(express.json());
 
 // apiの設定
 app.use('/api/v1/products', productRouter);
