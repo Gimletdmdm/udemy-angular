@@ -8,19 +8,20 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class ProductService {
 
-  private productsUrl = '/api/v1/products/';
+  private productsUrl = '/api/v1/products';
 
   http = inject(HttpClient);
 
   getProduct(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
+    return this.http.get<Product[]>('/api/v1/products')
       .pipe(
         catchError(this.handleError),
       );
   }
 
   getProductById(id: string): Observable<Product> {
-    const productByIdUrl = `${this.productsUrl}` + id;
+    const productByIdUrl = '/api/v1/products/' + id;
+    // const productByIdUrl = `${this.productsUrl}` + id;
     return this.http.get<Product>(productByIdUrl)
       .pipe(
         catchError(this.handleError),
