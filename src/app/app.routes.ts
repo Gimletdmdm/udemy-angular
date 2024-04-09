@@ -2,12 +2,25 @@ import { Routes } from '@angular/router';
 import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AuthComponent } from './auth/auth.component';
 
 export const routes: Routes = [
     {
         path: '',
         redirectTo: 'products',
         pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+        title: 'login'
+    },
+    {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'register'
     },
     {
         path: 'products',

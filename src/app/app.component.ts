@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators'
 import { LocationStrategy, PlatformLocation, Location, DOCUMENT } from '@angular/common';
 import { NavbarComponent } from './common/navbar/navbar.component';
+import { AuthComponent } from './auth/auth.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { NavbarComponent } from './common/navbar/navbar.component';
     CommonModule, 
     RouterOutlet,
     NavbarComponent,
-    ProductComponent
+    ProductComponent,
+    AuthComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
