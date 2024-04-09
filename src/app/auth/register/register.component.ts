@@ -1,22 +1,41 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-register',
     standalone: true,
     imports: [
         CommonModule,
-        RouterLink
+        RouterLink,
+        FormsModule
     ],
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    test : Date = new Date();
-    focus: any;
-    focus1: any;
-    constructor() { }
+    errors: any; 
+    
+    private authService = inject(AuthService);
+    private router = inject(Router);
 
     ngOnInit() {}
+
+    register(registerForm: NgForm) {
+        console.log(registerForm.value);
+        this.authService.register(registerForm.value)
+            .subscribe({
+                next: (res) => {
+                    console.log("success!");
+                    this.router.navigate(['/login']);
+                },
+                error: (err: HttpErrorResponse) => {
+                    console.error(err);
+                    this.errors = err.error.errors;
+                }
+            });
+    }
 }
