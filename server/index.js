@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+// const bodyParser = require('body-parser');
 const config = require('./config');
 const FakeDb = require('./fake-db');
 
 const productRouter = require('./routes/products');
+const userRouter = require('./routes/users');
 const path = require('path');
 
 mongoose.connect(config.MONGODB_URI, {
@@ -16,10 +18,14 @@ mongoose.connect(config.MONGODB_URI, {
     }
 ).catch(err => console.log(err));
 
-const app = express()
+const app = express();
+// app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // apiの設定
 app.use('/api/v1/products', productRouter);
+app.use('/api/v1/users', userRouter);
 
 if(process.env.NODE_ENV === 'production') {
     const appPath = path.join(__dirname, '..', 'dist', 'udemy-angular');
