@@ -5,6 +5,7 @@ import { ProductDetailComponent } from './product/product-detail/product-detail.
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/shared/auth.guard';
 
 export const routes: Routes = [
     {
@@ -35,7 +36,8 @@ export const routes: Routes = [
             {
                 path: 'detail/:productId',
                 component: ProductDetailComponent,
-                title: 'detail'
+                title: 'detail',
+                canActivate: [AuthGuard]
             }
         ]
     },
