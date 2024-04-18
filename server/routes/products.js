@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../model/product')
+const Product = require('../model/product');
+const UserCtrl = require('../controllers/user');
+
 
 // find()はコールバックを引数に取れなくなったので注意⇒非同期処理で対応する
 router.get('', async (req, res) => {
@@ -14,7 +16,7 @@ router.get('', async (req, res) => {
     
 });
 
-router.get('/:productId', async (req, res) => {
+router.get('/:productId', UserCtrl.authMiddleware, async (req, res) => {
     const productId = req.params.productId;
     try {
         foundProduct = await Product.findById(productId);
@@ -23,5 +25,7 @@ router.get('/:productId', async (req, res) => {
         res.status(422).send({error: [{title: 'ProductId error', detail: 'ProductId not found!'}]});
     }
 });
+
+
 
 module.exports = router;
